@@ -34,6 +34,30 @@ void print_string(va_list args, int *count)
 }
 
 /**
+ * print_integer - prints an integer
+ * @args: list of arguments
+ * @count: pointer to the count of printed characters
+ * Return: void
+ */
+void print_integer(va_list args, int *count)
+{
+	int n = va_arg(args, int);
+
+	if (n < 0)
+	{
+		putchar('-');
+		n = -n;
+		(*count)++;
+	}
+	if (n / 10)
+	{
+		print_integer(args, count);
+	}
+	putchar(n % 10 + '0');
+	(*count)++;
+}
+
+/**
  * _printf - produces output according to a format
  * @format: character string
  * @...: optional arguments
