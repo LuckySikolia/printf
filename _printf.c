@@ -72,17 +72,17 @@ int _printf(const char *format, ...)
 
 	if (!format)
 		return (-1);
-	
+
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
 			i++;
 			if  (format[i] == 'c')
-				print_char(args,&count);
+				print_char(args, &count);
 			else if (format[i] == 's')
 				print_string(args, &count);
-			else if (format[i] == 'd' || format[i] == 'i' )
+			else if (format[i] == 'd' || format[i] == 'i')
 				print_integer(args, &count);
 			else if (format[i] == '%')
 			{
@@ -93,7 +93,7 @@ int _printf(const char *format, ...)
 			{
 				putchar('%');
 				putchar(format[i]);
-				count +=2;
+				count += 2;
 			}
 		}
 		else
