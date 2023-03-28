@@ -1,4 +1,5 @@
 #include "main.h"
+#include <ctype.h>
 
 /**
  * get_precision - Calculates the precision for printing
@@ -16,27 +17,25 @@ int get_precision(const char *format, int *i, va_list list)
 	if (format[curr_i] != '.')
 		return (precision);
 
-	precision = 0;
+	curr_i++;
 
-	for (curr_i += 1; format[curr_i] != '\0'; curr_i++)
+	if (format[curr_i] == '*')
 	{
-		if (is_digit(format[curr_i]))
+		curr_i++;
+		precision = va_arg(list, int);
+
+		if (precision < 0)
+			precision = 0;
+	}
+	else if (isdigit(format[curr_i]))
+	{
+		while (isdigit(format[curr_i]))
 		{
 			precision *= 10;
 			precision += format[curr_i] - '0';
-		}
-		else if (format[curr_i] == '*')
-		{
 			curr_i++;
-			precision = va_arg(list, int);
-			break;
 		}
-		else
-			break;
 	}
-
 	*i = curr_i - 1;
-
 	return (precision);
 }
-
