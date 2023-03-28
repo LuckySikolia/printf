@@ -8,9 +8,6 @@
 #include <unistd.h>
 
 int _printf(const char *format, ...);
-/*void print_string(va_list args, int *count);
-void print_char(va_list args, int *count);
-void print_integer(va_list args, int *count);*/
 
 #define UNUSED(x) (void)(x)
 #define BUFF_SIZE 1024
